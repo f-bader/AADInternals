@@ -1,4 +1,4 @@
-﻿## Directory Sync API functions
+## Directory Sync API functions
 
 # NOTE: Azure AD Sync API gets redirected quite often 2-3 times per request. 
 # Therefore the functions need to be called recursively and use $Recursion parameter.
@@ -2221,7 +2221,7 @@ function Join-OnPremDeviceToAzureAD
         if(!$Certificate)
         {
             Write-Verbose "No Certificate given, creating a new self-signed certificate"
-            $Certificate = New-Certificate -SubjectName "CN=$($DeviceId.ToString())"
+            $Certificate = New-SelfSignedCertificate -Subject "CN=$($DeviceId.ToString())" -CertStoreLocation "Cert:\CurrentUser\My\"
             Set-BinaryContent -Path "$($DeviceId.ToString())-user.pfx" -Value $Certificate.Export([System.Security.Cryptography.X509Certificates.X509ContentType]::Pfx)
             $certExported = $true
         }
