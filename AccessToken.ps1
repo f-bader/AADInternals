@@ -1,4 +1,4 @@
-﻿# This contains functions for getting Azure AD access tokens
+# This contains functions for getting Azure AD access tokens
 
 # Tries to get access token from cache unless provided as parameter
 # Refactored Jun 8th 2020
@@ -942,7 +942,9 @@ function Get-AccessTokenForAADJoin
         [Parameter(Mandatory=$False)]
         [string]$OTPSecretKey,
         [Parameter(Mandatory=$False)]
-        [string]$TAP
+        [string]$TAP,
+        [Parameter(Mandatory=$False)]
+        [string]$ClientID="1b730954-1685-4b74-9bfd-dac224a7b894"
     )
     Process
     {
@@ -952,7 +954,7 @@ function Get-AccessTokenForAADJoin
         }
         else
         {
-            Get-AccessToken -ClientID "1b730954-1685-4b74-9bfd-dac224a7b894" -Resource "01cb2876-7ebd-4aa4-9cc9-d28bd4d359a9" -KerberosTicket $KerberosTicket -Domain $Domain -SAMLToken $SAMLToken -Credentials $Credentials -SaveToCache $SaveToCache -PRTToken $PRTToken -UseDeviceCode $UseDeviceCode -ForceMFA $ForceMFA -BPRT $BPRT -OTPSecretKey $OTPSecretKey -TAP $TAP
+            Get-AccessToken -ClientID $ClientID -Resource "01cb2876-7ebd-4aa4-9cc9-d28bd4d359a9" -KerberosTicket $KerberosTicket -Domain $Domain -SAMLToken $SAMLToken -Credentials $Credentials -SaveToCache $SaveToCache -PRTToken $PRTToken -UseDeviceCode $UseDeviceCode -ForceMFA $ForceMFA -BPRT $BPRT -OTPSecretKey $OTPSecretKey -TAP $TAP
         }
     }
 }
