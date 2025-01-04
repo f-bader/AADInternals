@@ -221,12 +221,14 @@ function Get-AccessTokenForAADGraph
         [Parameter(Mandatory=$False)]
         [string]$OTPSecretKey,
         [Parameter(Mandatory=$False)]
-        [string]$TAP
+        [string]$TAP,
+        [Parameter(Mandatory=$False)]
+        [string]$ClientId = "1b730954-1685-4b74-9bfd-dac224a7b894"
 
     )
     Process
     {
-        Get-AccessToken -Credentials $Credentials -Resource $Resource -ClientId "1b730954-1685-4b74-9bfd-dac224a7b894" -SAMLToken $SAMLToken -Tenant $Tenant -KerberosTicket $KerberosTicket -Domain $Domain -SaveToCache $SaveToCache -PRTToken $PRTToken -UseDeviceCode $UseDeviceCode -OTPSecretKey $OTPSecretKey -TAP $TAP
+        Get-AccessToken -Credentials $Credentials -Resource $Resource -ClientId $ClientId -SAMLToken $SAMLToken -Tenant $Tenant -KerberosTicket $KerberosTicket -Domain $Domain -SaveToCache $SaveToCache -PRTToken $PRTToken -UseDeviceCode $UseDeviceCode -OTPSecretKey $OTPSecretKey -TAP $TAP
     }
 }
 
@@ -284,11 +286,13 @@ function Get-AccessTokenForMSGraph
         [Parameter(Mandatory=$False)]
         [string]$OTPSecretKey,
         [Parameter(Mandatory=$False)]
-        [string]$TAP
+        [string]$TAP,
+        [Parameter(Mandatory=$False)]
+        [string]$ClientId="1b730954-1685-4b74-9bfd-dac224a7b894"
     )
     Process
     {
-        Get-AccessToken -Credentials $Credentials -Resource "https://graph.microsoft.com" -ClientId "1b730954-1685-4b74-9bfd-dac224a7b894" -SAMLToken $SAMLToken -KerberosTicket $KerberosTicket -Domain $Domain -SaveToCache $SaveToCache -PRTToken $PRTToken -UseDeviceCode $UseDeviceCode -Tenant $Tenant -OTPSecretKey $OTPSecretKey -TAP $TAP -SaveToMgCache $SaveToMgCache
+        Get-AccessToken -Credentials $Credentials -Resource "https://graph.microsoft.com" -ClientId $ClientId -SAMLToken $SAMLToken -KerberosTicket $KerberosTicket -Domain $Domain -SaveToCache $SaveToCache -PRTToken $PRTToken -UseDeviceCode $UseDeviceCode -Tenant $Tenant -OTPSecretKey $OTPSecretKey -TAP $TAP -SaveToMgCache $SaveToMgCache
     }
 }
 
